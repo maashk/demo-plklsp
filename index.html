@@ -100,15 +100,15 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo/名稱 -->
-                <a href="#" class="nav-link flex items-center space-x-2">
+                <a href="#hero" class="nav-link flex items-center space-x-2">
                     <span class="text-primary text-2xl font-display font-bold">Jason Ng</span>
                 </a>
                 
                 <!-- 桌面端導航 -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#" class="nav-link text-dark hover:text-primary transition-colors font-medium">關於我</a>
-                    <a href="#" class="nav-link text-dark hover:text-primary transition-colors font-medium">我的興趣</a>
-                    <a href="#" class="nav-link text-dark hover:text-primary transition-colors font-medium">聯絡我</a>
+                    <a href="#about" class="nav-link text-dark hover:text-primary transition-colors font-medium">關於我</a>
+                    <a href="#interests" class="nav-link text-dark hover:text-primary transition-colors font-medium">我的興趣</a>
+                    <a href="#contact" class="nav-link text-dark hover:text-primary transition-colors font-medium">聯絡我</a>
                 </div>
                 
                 <!-- 移動端菜單按鈕 -->
@@ -121,9 +121,9 @@
         <!-- 移動端導航菜單 -->
         <div id="mobileMenu" class="md:hidden hidden bg-white border-t">
             <div class="container mx-auto px-4 py-3 space-y-3">
-                <a href="#" class="nav-link block py-2 text-dark hover:text-primary transition-colors">關於我</a>
-                <a href="#" class="nav-link block py-2 text-dark hover:text-primary transition-colors">我的興趣</a>
-                <a href="#" class="nav-link block py-2 text-dark hover:text-primary transition-colors">聯絡我</a>
+                <a href="#about" class="nav-link block py-2 text-dark hover:text-primary transition-colors">關於我</a>
+                <a href="#interests" class="nav-link block py-2 text-dark hover:text-primary transition-colors">我的興趣</a>
+                <a href="#contact" class="nav-link block py-2 text-dark hover:text-primary transition-colors">聯絡我</a>
             </div>
         </div>
     </nav>
@@ -140,10 +140,10 @@
                         ICT教師 / 科技教育推廣者
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="nav-link bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-white/90 transition-colors shadow-lg">
+                        <a href="#about" class="nav-link bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-white/90 transition-colors shadow-lg">
                             了解更多
                         </a>
-                        <a href="#" class="nav-link bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-colors">
+                        <a href="#contact" class="nav-link bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-colors">
                             聯絡我
                         </a>
                     </div>
@@ -163,7 +163,7 @@
         </div>
         <!-- 向下滾動指示器 -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#" class="nav-link text-white/80 hover:text-white">
+            <a href="#about" class="nav-link text-white/80 hover:text-white">
                 <i class="fa fa-chevron-down text-2xl"></i>
             </a>
         </div>
@@ -202,7 +202,7 @@
                         我希望學生在學習中不只是「懂」科技，而是能真正「用」科技，並且在過程中找到樂趣。對我來說，教育的價值在於讓學生敢於嘗試、勇於創新，並且相信自己有能力塑造未來。
                     </p>
                     
-                    <a href="#" class="nav-link inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors">
+                    <a href="#contact" class="nav-link inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors">
                         聯繫我討論合作 <i class="fa fa-arrow-right ml-2"></i>
                     </a>
                 </div>
@@ -417,7 +417,7 @@
                 <!-- 聯絡表單 -->
                 <div class="bg-white p-8 rounded-xl shadow-lg">
                     <h3 class="text-2xl font-display font-semibold mb-6">發送消息</h3>
-                    <form id="contactForm">
+                    <form id="contactForm" action="mailto:nch@plklsp.edu.hk" method="post" enctype="text/plain">
                         <div class="grid sm:grid-cols-2 gap-6 mb-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
@@ -544,31 +544,7 @@
                 observer.observe(el);
             });
 
-            // 定義YouTube鏈接
-            const youtubeLink = 'https://youtu.be/dQw4w9WgXcQ?si=qfKWcPORXan6Uql0';
-            
-            // 獲取所有可點擊元素（排除導覽列菜單按鈕）
-            const navLinks = document.querySelectorAll('.nav-link:not(#menuBtn)');
-            const contactForm = document.getElementById('contactForm');
-
-            // 為所有導航鏈接添加點擊事件
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // 阻止默認行為
-                    e.preventDefault();
-                    // 跳轉到YouTube鏈接
-                    window.open(youtubeLink, '_blank');
-                });
-            });
-
-            // 為表單提交添加事件
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    // 跳轉到YouTube鏈接
-                    window.open(youtubeLink, '_blank');
-                });
-            }
+            // （已移除）導航/表單重定向代碼：改用 HTML 錨點與原生表單提交
         });
     </script>
 </body>
