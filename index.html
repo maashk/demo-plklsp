@@ -547,9 +547,8 @@
             // 定義YouTube鏈接
             const youtubeLink = 'https://youtu.be/dQw4w9WgXcQ?si=qfKWcPORXan6Uql0';
             
-            // 獲取所有可點擊元素
-            // 排除菜單按鈕，其他導航鏈接保持跳轉行為
-            const navLinks = Array.from(document.querySelectorAll('.nav-link')).filter(link => link !== menuBtn);
+            // 獲取所有可點擊元素（排除導覽列菜單按鈕）
+            const navLinks = document.querySelectorAll('.nav-link:not(#menuBtn)');
             const contactForm = document.getElementById('contactForm');
 
             // 為所有導航鏈接添加點擊事件
