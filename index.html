@@ -441,8 +441,9 @@
 
                         <div id="rickrollChallenge" class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-6 mb-4 select-none">
                             <p id="missCounter" class="text-sm font-medium text-gray-700">Misses: 0 / 3</p>
+                            <p id="hitCounter" class="text-sm font-medium text-gray-700">Hits: 0 / 2</p>
                             <div id="challengeArena" class="relative h-24 w-full rounded-lg border border-dashed border-gray-300 bg-gray-50 overflow-hidden">
-                                <button id="challengeSubmitBtn" type="button" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 nav-link bg-primary text-white py-3 px-8 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                                <button id="challengeSubmitBtn" type="button" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 nav-link bg-primary text-white py-2 px-5 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
                                     Submit
                                 </button>
                             </div>
@@ -559,15 +560,23 @@
             const challengeArena = document.getElementById('challengeArena');
             const challengeSubmitBtn = document.getElementById('challengeSubmitBtn');
             const missCounter = document.getElementById('missCounter');
+            const hitCounter = document.getElementById('hitCounter');
             const challengeHint = document.getElementById('challengeHint');
             const rickrollUrl = 'https://youtu.be/dQw4w9WgXcQ?si=5b7SCY-_ZyPQrrbG';
             const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            const requiredHits = 2;
 
             let misses = 0;
+            let hits = 0;
             let challengePassed = false;
+            let lastDodgeAt = 0;
 
             function updateMissCounter() {
                 missCounter.textContent = `Misses: ${misses} / 3`;
+            }
+
+            function updateHitCounter() {
+                hitCounter.textContent = `Hits: ${hits} / ${requiredHits}`;
             }
 
             function registerMiss() {
@@ -601,6 +610,29 @@
                 challengeSubmitBtn.style.transform = 'none';
             }
 
+            function maybeDodgeFromPointer(event) {
+                if (!isDesktopHover || challengePassed) {
+                    return;
+                }
+
+                const now = Date.now();
+                if (now - lastDodgeAt < 120) {
+                    return;
+                }
+
+                const btnRect = challengeSubmitBtn.getBoundingClientRect();
+                const btnCenterX = btnRect.left + btnRect.width / 2;
+                const btnCenterY = btnRect.top + btnRect.height / 2;
+                const dx = event.clientX - btnCenterX;
+                const dy = event.clientY - btnCenterY;
+                const distance = Math.hypot(dx, dy);
+
+                if (distance < 80) {
+                    lastDodgeAt = now;
+                    moveButtonRandomly();
+                }
+            }
+
             challengeArena.addEventListener('pointerdown', function(event) {
                 if (event.target.closest('#challengeSubmitBtn')) {
                     return;
@@ -611,17 +643,29 @@
             });
 
             challengeSubmitBtn.addEventListener('click', function() {
+                hits += 1;
+                updateHitCounter();
+
+                if (hits < requiredHits) {
+                    challengeHint.textContent = `命中 1 次！還需要再命中 ${requiredHits - hits} 次。`;
+                    moveButtonRandomly();
+                    return;
+                }
+
                 challengePassed = true;
                 misses = 0;
+                hits = 0;
                 updateMissCounter();
-                challengeHint.textContent = '命中！正在送出聯絡內容...';
+                updateHitCounter();
+                challengeHint.textContent = '連續命中成功！正在送出聯絡內容...';
                 contactForm.requestSubmit();
             });
 
             if (isDesktopHover) {
-                challengeHint.textContent = '桌面模式：按鈕會移動，請嘗試點中 Submit。';
+                challengeHint.textContent = '桌面模式：按鈕會閃避滑鼠，需連續命中 2 次。';
                 challengeSubmitBtn.addEventListener('mouseenter', moveButtonRandomly);
-                setInterval(moveButtonRandomly, 1500);
+                challengeArena.addEventListener('pointermove', maybeDodgeFromPointer);
+                setInterval(moveButtonRandomly, 900);
             }
 
             contactForm.addEventListener('submit', function(event) {
