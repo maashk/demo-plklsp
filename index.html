@@ -108,6 +108,7 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#about" class="nav-link text-dark hover:text-primary transition-colors font-medium">關於我</a>
                     <a href="#interests" class="nav-link text-dark hover:text-primary transition-colors font-medium">我的興趣</a>
+                    <a href="#info" class="nav-link text-dark hover:text-primary transition-colors font-medium">資訊專區</a>
                     <a href="#contact" class="nav-link text-dark hover:text-primary transition-colors font-medium">聯絡我</a>
                 </div>
                 
@@ -123,6 +124,7 @@
             <div class="container mx-auto px-4 py-3 space-y-3">
                 <a href="#about" class="nav-link block py-2 text-dark hover:text-primary transition-colors">關於我</a>
                 <a href="#interests" class="nav-link block py-2 text-dark hover:text-primary transition-colors">我的興趣</a>
+                <a href="#info" class="nav-link block py-2 text-dark hover:text-primary transition-colors">資訊專區</a>
                 <a href="#contact" class="nav-link block py-2 text-dark hover:text-primary transition-colors">聯絡我</a>
             </div>
         </div>
@@ -331,6 +333,61 @@
                 <p class="text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed">
                     除了上述興趣外，我也積極參與教育社群活動，與同行交流教學心得，並且喜歡透過旅行擴闊視野，將不同地方的教育理念和文化帶回課堂，豐富教學內容。
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 資訊專區 -->
+    <section id="info" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-display font-bold mb-4">資訊專區</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">提供課程方向、合作模式與常見問題，方便家長、學生及教育夥伴快速了解網站重點內容。</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <article class="bg-gray-50 rounded-xl p-6 card-hover animate-fade-in">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-lightbulb-o text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">教學理念</h3>
+                    <p class="text-gray-700 leading-relaxed">以學生為中心，重視實作與反思。課堂中結合生活情境與科技工具，讓學生在真實任務中培養解難能力與自信心。</p>
+                </article>
+
+                <article class="bg-gray-50 rounded-xl p-6 card-hover animate-fade-in" style="animation-delay: 0.15s">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-cogs text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">課程主題</h3>
+                    <p class="text-gray-700 leading-relaxed">涵蓋人工智慧入門、媒體素養、網絡安全、程式設計及跨學科專題，按不同年級設計難度與學習目標。</p>
+                </article>
+
+                <article class="bg-gray-50 rounded-xl p-6 card-hover animate-fade-in" style="animation-delay: 0.3s">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-handshake-o text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">合作方式</h3>
+                    <p class="text-gray-700 leading-relaxed">歡迎學校講座、教師培訓、學生工作坊與教育計畫協作。可按需要調整內容、時長與活動形式。</p>
+                </article>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 animate-fade-in" style="animation-delay: 0.45s">
+                <h3 class="text-2xl font-display font-semibold mb-6">常見問題（FAQ）</h3>
+                <div class="space-y-5">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-1">課程是否適合沒有程式基礎的學生？</h4>
+                        <p class="text-gray-700">可以。課程會由基礎概念開始，並以循序漸進方式進行，協助學生一步步建立技能。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-1">可否安排到校工作坊或專題日？</h4>
+                        <p class="text-gray-700">可以。可按學校時間表安排半日、全日或分階段活動，並提供活動建議與教材規劃。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-1">如何索取合作或講座資料？</h4>
+                        <p class="text-gray-700">請透過下方聯絡表單或電郵聯絡，並簡述受眾、目標和預計時段，我會盡快回覆。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -550,7 +607,7 @@
             }, observerOptions);
             
             // 觀察所有主要區塊的元素
-            document.querySelectorAll('#hero > div > div, #about > div > div, #interests > div > div, #contact > div > div').forEach(el => {
+            document.querySelectorAll('#hero > div > div, #about > div > div, #interests > div > div, #info > div > div, #contact > div > div').forEach(el => {
                 observer.observe(el);
             });
 
